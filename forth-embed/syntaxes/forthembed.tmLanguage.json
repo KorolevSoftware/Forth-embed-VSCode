@@ -1,0 +1,116 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "forth-embed",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#stackoperation"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#variable"
+		},
+		{
+			"include": "#integer" 
+		},
+		{
+			"include": "#variable-constant"
+		},
+		{
+			"include": "#function_declarate" 
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.forthembed",
+				"match": "\\b(if|else|then|do|loop|begin|until)\\b"
+			},
+			{
+				"name": "keyword.operator.new",
+				"match": "\\b(mod)\\b"
+			}]
+
+		},
+		"stackoperation": {
+			"patterns": [{
+				"name": "keyword.stack-operation.forthembed",
+				"match": "\\b(dup|drop|swap|over|rot|emit|cr)\\b"
+			}]
+
+		},
+		"strings": {
+			"name": "string.quoted.double.forthembed",
+			"begin": ".\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.forthembed",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.line.brackets.forthembed",
+			"begin": "\\(",
+			"end": "\\)",
+			"patterns": [
+				{
+					"name": "comment.block.forthembed",
+					"match": "\\\\"
+				}
+			]
+		},
+		"integer": {
+			"patterns": [{
+				"name": "constant.numeric.integer.forthembed",
+				"match": "\\d+"
+			}]
+		},
+		"variable-constant": {
+			"patterns": [
+			{
+				"name": "constant.language.variable.forthembed",
+				"match": "\\b(variable)\\b"
+			},
+			{
+				"name": "constant.language.constant.forthembed",
+				"match": "\\b(constant)\\b"
+			}]
+		},
+
+		"function_declarate": {
+			"name": "meta.class.dascript",
+			"begin": ":[[:space:]]+",
+			"beginCaptures": {
+			  "1": {
+				"name": "storage.type.class.forthembed"
+			  }
+			},
+			"end": "(?=\\n)",
+			
+			"patterns": [
+				{
+				  "include": "#struct_name"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+
+		},
+		"struct_name": {
+			"name": "entity.name.function.forthembed",
+			"match": "(?x)\\b([[:alpha:]_]\\w*)\\b"
+		  }
+		
+	},
+	"scopeName": "source.foe"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "forth-embed",
+  "displayName": "Forth-embed",
+  "description": "forth-embed debuger",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "forthembed",
+      "aliases": ["forth-embed", "forthembed"],
+      "extensions": [".foe"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "forthembed",
+      "scopeName": "source.foe",
+      "path": "./syntaxes/forthembed.tmLanguage.json"
+    }]
+  }
+}
